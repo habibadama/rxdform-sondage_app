@@ -22,40 +22,19 @@ const Navbar = () => {
         <nav className="hidden md:flex gap-5 font-medium p-1 text-lg">
           <Link
             to="/"
-            spy={true}
-            smooth={true}
-            duration={500}
             className="hover:text-[#539165] transition-all cursor-pointer"
           >
             Accueil
           </Link>
           <Link
-            to="#"
-            spy={true}
-            smooth={true}
-            duration={500}
+            to="/sondages"
             className="hover:text-[#539165] transition-all cursor-pointer"
           >
             Créer un sondage
           </Link>
-          <Link
-            to="#"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="hover:text-[#539165] transition-all cursor-pointer"
-          >
+          <Link className="hover:text-[#539165] transition-all cursor-pointer">
             Mes sondages
           </Link>
-          {/* <Link
-            to="login"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="hover:text-[#539165] transition-all cursor-pointer"
-          >
-            Créer un compte
-          </Link> */}
         </nav>
 
         <div className="flex md:hidden" onClick={handleChange}>
@@ -71,36 +50,24 @@ const Navbar = () => {
       >
         <Link
           to="/"
-          spy={true}
-          smooth={true}
-          duration={500}
           className="hover:text-[#539165] transition-all cursor-pointer"
         >
           Accueil
         </Link>
         <Link
-          to="#"
-          spy={true}
-          smooth={true}
-          duration={500}
+          to="/sondages"
           className="hover:text-[#539165] transition-all cursor-pointer"
         >
           Créer un sondage
         </Link>
         <Link
           to="#"
-          spy={true}
-          smooth={true}
-          duration={500}
           className="hover:text-[#539165] transition-all cursor-pointer"
         >
           Mes sondages
         </Link>
         <Link
           to="login"
-          spy={true}
-          smooth={true}
-          duration={500}
           className="hover:text-[#539165] transition-all cursor-pointer"
         >
           Créer un compte

@@ -3,8 +3,17 @@ import img from "../assets/contact.svg";
 import Heading from "../layout/Heading";
 import Button from "../layout/Button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+// Fonction qui vérifie si l'utilisateur est authentifié
+const isAuthenticated = () => {
+  const token = localStorage.getItem("token");
+  console.log(token);
+  return !!token; // Retourne true si le token existe, sinon false
+};
 
 const Login = (props) => {
+  const navigate = new useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,16 +34,21 @@ const Login = (props) => {
         "http://localhost:8000/api/login",
         formData
       );
-      setSuccessMessage("Connexion réussie !");
+      if (response && response.data) {
+        setSuccessMessage("Connexion réussie !");
+        const token = response.data.token;
+        localStorage.setItem("token", token);
 
-      const token = response.data.token;
-
-      // Stockez le token dans le localStorage pour une utilisation ultérieure
-      localStorage.setItem("token", token);
-
-      // Redirigez l'utilisateur vers la page de création de sondage
-      // props.history.push("/create-survey");
-      alert("Connexion réussie");
+        // Redirigez l'utilisateur vers la page de création de sondage
+        if (isAuthenticated()) {
+          navigate("/courses");
+        } else {
+          console.error("Erreur lors de l'authentification");
+        }
+      } else {
+        // Gérer le cas où response ou response.data est undefined
+        console.error("Réponse inattendue de la requête");
+      }
     } catch (error) {
       setErrorMessage("Identifiants invalides");
       console.error("Erreur lors de la connexion : ", error.response.data);

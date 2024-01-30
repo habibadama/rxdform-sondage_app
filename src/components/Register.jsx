@@ -41,7 +41,6 @@ const Register = (props) => {
         email: "",
         password: "",
       });
-
       // console.log(response.data);
       // Traitez la réponse, par exemple, redirigez l'utilisateur après l'inscription.
     } catch (error) {
