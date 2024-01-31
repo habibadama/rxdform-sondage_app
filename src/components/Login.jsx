@@ -34,14 +34,20 @@ const Login = (props) => {
         "http://localhost:8000/api/login",
         formData
       );
+
+      console.log(response);
+
       if (response && response.data) {
         setSuccessMessage("Connexion réussie !");
         const token = response.data.token;
+        const userName = response.data.username; // Assurez-vous que votre API renvoie le nom d'utilisateur
+
         localStorage.setItem("token", token);
+        localStorage.setItem("username", userName);
 
         // Redirigez l'utilisateur vers la page de création de sondage
         if (isAuthenticated()) {
-          navigate("/courses");
+          navigate("/sondages");
         } else {
           console.error("Erreur lors de l'authentification");
         }
