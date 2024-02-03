@@ -9,7 +9,7 @@ const Home = () => {
       <div className=" md:w-2/4 text-center">
         <h2 className=" text-5xl font-semibold leading-tight">
           RxDForm
-          <span className="text-brightGreen"> Application PWA de Sondages</span>
+          <span className="text-brightGreen"> Application de Sondages</span>
         </h2>
         <p className=" text-lightText mt-5 text-start">
           Bienvenue sur RxDForm, l'application qui vous permet de créer,

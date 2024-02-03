@@ -105,7 +105,7 @@ const Register = (props) => {
             ))}
 
           <button
-            className="underline"
+            className="hover:underline"
             onClick={() => props.onFormSwitch("login")}
           >
             Already have an account? Login here.{" "}

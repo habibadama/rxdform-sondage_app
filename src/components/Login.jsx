@@ -25,6 +25,23 @@ const Login = (props) => {
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const getUserDetails = async (token) => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response.data;
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des détails de l'utilisateur : ",
+        error.response.data
+      );
+      throw error;
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -35,12 +52,10 @@ const Login = (props) => {
         formData
       );
 
-      console.log(response);
-
       if (response && response.data) {
         setSuccessMessage("Connexion réussie !");
         const token = response.data.token;
-        const userName = response.data.username; // Assurez-vous que votre API renvoie le nom d'utilisateur
+        const userName = response.data.username;
 
         localStorage.setItem("token", token);
         localStorage.setItem("username", userName);
@@ -99,7 +114,7 @@ const Login = (props) => {
             </div>
           )}
           <button
-            className="link-btn"
+            className="hover:underline"
             onClick={() => props.onFormSwitch("register")}
           >
             Already have an account? Register.
