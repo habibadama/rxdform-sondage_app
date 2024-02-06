@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-// import { Link } from "react-scroll";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../isAuthenticated/isAuthenticated";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [menu, setMenu] = useState(false);
 
   const handleChange = () => {
     setMenu(!menu);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    navigate("/");
   };
 
   return (
@@ -32,9 +40,21 @@ const Navbar = () => {
           >
             Créer un sondage
           </Link>
-          <Link className="hover:text-[#539165] transition-all cursor-pointer">
+          <Link
+            to="/mes-sondages"
+            className="hover:text-[#539165] transition-all cursor-pointer"
+          >
             Mes sondages
           </Link>
+          {isAuthenticated() && (
+            <Link
+              to="/"
+              className="hover:text-[#539165] transition-all cursor-pointer"
+              onClick={handleLogout}
+            >
+              Déconnexion
+            </Link>
+          )}
         </nav>
 
         <div className="flex md:hidden" onClick={handleChange}>
@@ -61,17 +81,20 @@ const Navbar = () => {
           Créer un sondage
         </Link>
         <Link
-          to="#"
+          to="mes-sondages"
           className="hover:text-[#539165] transition-all cursor-pointer"
         >
           Mes sondages
         </Link>
-        <Link
-          to="login"
-          className="hover:text-[#539165] transition-all cursor-pointer"
-        >
-          Créer un compte
-        </Link>
+        {isAuthenticated() && (
+          <Link
+            to="/"
+            className="hover:text-[#539165] transition-all cursor-pointer"
+            onClick={handleLogout}
+          >
+            Déconnexion
+          </Link>
+        )}
       </div>
     </div>
   );

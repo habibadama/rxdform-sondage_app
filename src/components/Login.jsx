@@ -4,16 +4,10 @@ import Heading from "../layout/Heading";
 import Button from "../layout/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-// Fonction qui vérifie si l'utilisateur est authentifié
-const isAuthenticated = () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
-  return !!token; // Retourne true si le token existe, sinon false
-};
+import { isAuthenticated } from "../isAuthenticated/isAuthenticated";
 
 const Login = (props) => {
-  const navigate = new useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -60,14 +54,12 @@ const Login = (props) => {
         localStorage.setItem("token", token);
         localStorage.setItem("username", userName);
 
-        // Redirigez l'utilisateur vers la page de création de sondage
         if (isAuthenticated()) {
           navigate("/sondages");
         } else {
           console.error("Erreur lors de l'authentification");
         }
       } else {
-        // Gérer le cas où response ou response.data est undefined
         console.error("Réponse inattendue de la requête");
       }
     } catch (error) {

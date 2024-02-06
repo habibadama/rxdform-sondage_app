@@ -5,14 +5,6 @@ import Button from "../layout/Button";
 import axios from "axios";
 
 const Register = (props) => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [name, setName] = useState("");
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(email);
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,15 +26,13 @@ const Register = (props) => {
         "http://localhost:8000/api/register",
         formData
       );
-      setSuccessMessage("Inscription réussie !");
+      // setSuccessMessage("Inscription réussie !");
       // Réinitialisez le formulaire après une inscription réussie
       setFormData({
         name: "",
         email: "",
         password: "",
       });
-      // console.log(response.data);
-      // Traitez la réponse, par exemple, redirigez l'utilisateur après l'inscription.
     } catch (error) {
       setErrorMessage("The email has already been taken.");
       console.error("Erreur lors de l'inscription : ", error.response.data);
