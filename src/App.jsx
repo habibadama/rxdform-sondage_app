@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import SondageForm from "./components/SondageForm";
 import MesSondages from "./components/MesSondages";
+import SondageDetails from "./components/SondageDetails";
 
 const App = () => {
   const [currentForm, setCurrentForm] = useState("login");
@@ -30,6 +31,7 @@ const App = () => {
           />
           <Route path="/sondages" element={<SondageForm />} />
           <Route path="/mes-sondages" element={<MesSondages />} />
+          <Route path="/sondages/:sondageId" element={<SondageDetails />} />
         </Routes>
       </div>
     </Router>

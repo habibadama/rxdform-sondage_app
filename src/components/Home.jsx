@@ -20,7 +20,7 @@ const Home = () => {
           Connectez-vous et commencez à créer des sondages dès maintenant.
         </p>
 
-        <Link to="login" spy={true} smooth={true} duration={500}>
+        <Link to="login">
           <Button title="Créer un compte" />
         </Link>
       </div>

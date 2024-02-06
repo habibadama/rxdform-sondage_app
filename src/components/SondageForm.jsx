@@ -119,12 +119,13 @@ function SondageForm() {
             </label>
             <input
               type="text"
-              className="border rounded w-full py-2 px-3"
+              className="border rounded w-full py-2 px-3 "
               name="subject"
               value={surveyData.subject}
               onChange={(e) =>
                 setSurveyData({ ...surveyData, subject: e.target.value })
               }
+              required
             />
           </div>
           <div className="mb-4">
@@ -141,6 +142,7 @@ function SondageForm() {
                     placeholder="Saisir la question"
                     value={question.text}
                     onChange={(e) => handleChange(e, index)}
+                    required
                   />
                   <button
                     type="button"
@@ -157,6 +159,7 @@ function SondageForm() {
                     value={question.type}
                     onChange={(e) => handleChange(e, index)}
                     className="border rounded py-2 px-3"
+                    required
                   >
                     <option value="text">Texte</option>
                     <option value="multiple-choice">Choix multiple</option>
