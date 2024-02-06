@@ -70,7 +70,7 @@ const Login = (props) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center md:mx-32 mx-5 mt-10">
-      <Heading title1="Créer un compte" />
+      <Heading title1="Connectez-vous" />
       <div className="flex flex-col md:flex-row justify-between w-full">
         <form
           className="w-full md:w-2/5 space-y-5 pt-20"
@@ -82,14 +82,14 @@ const Login = (props) => {
               className=" py-3 px-2 rounded-lg hover:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all"
               onChange={handleInputChange}
               type="email"
-              placeholder="youremail@gmail.com"
+              placeholder="johndoe@gmail.com"
               id="email"
               name="email"
               required
             />
           </div>
           <div className="flex flex-col">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Mot de passe</label>
             <input
               className=" py-3 px-2 rounded-lg hover:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all"
               onChange={handleInputChange}
@@ -109,10 +109,10 @@ const Login = (props) => {
             className="hover:underline"
             onClick={() => props.onFormSwitch("register")}
           >
-            Already have an account? Register.
+            Vous avez déjà un compte ? S'inscrire.
           </button>
           <div className="flex flex-row justify-start">
-            <Button type="submit" title="Log In" />
+            <Button type="submit" title="Connectez-vous" />
           </div>
         </form>
         <div className="w-full md:w-2/4">

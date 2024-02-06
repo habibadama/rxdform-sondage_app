@@ -10,9 +10,7 @@ function SondageForm() {
 
   useEffect(() => {
     if (userName) {
-      // Mettez à jour la variable d'état avec le message de bienvenue
-      // <Heading title1="Créer" title2="un sondage" />;
-      setDisplayUserName(`${userName} ! `);
+      setDisplayUserName(`, ${userName} ! `);
     }
   }, []);
 
@@ -72,14 +70,14 @@ function SondageForm() {
     e.preventDefault();
 
     try {
-      const token = localStorage.getItem("token"); // Assurez-vous de stocker le token correctement lors de l'authentification
+      const token = localStorage.getItem("token");
 
       const response = await fetch("http://localhost:8000/api/sondages", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: `Bearer ${token}`, // Ajoutez le token dans les headers
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(surveyData),
       });
@@ -90,21 +88,19 @@ function SondageForm() {
 
       const responseData = await response.json();
       console.log(responseData);
-      // Vous pouvez mettre à jour l'état du composant ou rediriger l'utilisateur après l'envoi réussi
     } catch (error) {
       console.error("Erreur lors de l'envoi des données", error);
-      // Gérer l'erreur, par exemple, afficher un message à l'utilisateur
     }
   };
 
   return (
-    <div className=" min-h-screen flex flex-col items-center md:px-32 px-5 my-10">
+    <div className=" min-h-[70vh] flex flex-col items-center md:px-32 px-5 my-10">
       <div className="my-4 text-center">
-        <h2>
-          Bienvenue,
+        <h2 className="text-2xl mb-5">
+          Bienvenue
           <span className="font-semibold text-lg mb-4"> {DisplayUserName}</span>
         </h2>
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed text-lg">
           Sur cette page, vous pouvez créer vos propres sondages et collecter
           des réponses de manière simple et efficace. Utilisez le formulaire
           pour définir les questions de votre sondage, puis partagez-le avec
@@ -112,7 +108,7 @@ function SondageForm() {
           analyser les résultats.
         </p>
       </div>
-      <div className="max-w-lg bg-white p-6 rounded shadow-md w-[700px]">
+      <div className="max-w-2xl mx-auto bg-white p-6 rounded shadow-md w-full md:w-[700px]">
         <h2 className="text-3xl font-bold mb-4 text-center">
           Créer un sondage
         </h2>
@@ -137,10 +133,10 @@ function SondageForm() {
             </label>
             {surveyData.questions.map((question, index) => (
               <div key={index} className="mb-4">
-                <div className="flex items-center mb-2">
+                <div className="flex flex-col md:flex-row items-center mb-2">
                   <input
                     type="text"
-                    className="border rounded w-full py-2 px-3 mr-2"
+                    className="border rounded w-full md:w-3/4 py-2 px-3 mb-2 md:mb-0 md:mr-2"
                     name="text"
                     placeholder="Saisir la question"
                     value={question.text}
@@ -149,7 +145,7 @@ function SondageForm() {
                   <button
                     type="button"
                     onClick={() => removeQuestion(index)}
-                    className="text-red-500 font-bold"
+                    className="text-red-500 font-bold md:ml-2"
                   >
                     Supprimer
                   </button>
@@ -211,7 +207,7 @@ function SondageForm() {
           </div>
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded"
+            className="bg-blue-500 text-white py-2 px-4 rounded w-full md:w-auto"
           >
             Envoyer
           </button>
